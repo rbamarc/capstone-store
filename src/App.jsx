@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ProductList from './components/ProductList';
+import ProductDetail from './components/ProductDetail';
 
 const Home = () => <h1>Home Page</h1>;
 const About = () => <h1>About Page</h1>;
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:id" element={<ProductDetail/>}/>
         </Routes>
       </div>
     </Router>

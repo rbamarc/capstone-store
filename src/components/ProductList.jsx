@@ -21,7 +21,7 @@ function ProductList() {
     }, [])
     
     return (
-        <div>
+        <div className="main-content">
             <h1>Product List</h1>
             {isLoading ? (
                 <p>Loading...</p>
