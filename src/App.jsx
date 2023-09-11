@@ -5,6 +5,7 @@ import ProductDetail from './components/ProductDetail';
 import Register from './components/Register';
 import PersonalInfo from './components/PersonalInfo';
 import BasicInfo from './components/BasicInfo';
+import Login from './components/Login';
 
 const Home = () => <h1>Home Page</h1>;
 const About = () => <h1>About Page</h1>;
@@ -33,7 +34,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/users/register" element={<Register/>}/>
+          <Route path="/users/register" element={<Register />} />
+          <Route path='/login' element={<Login/>}/>
         </Routes>
       </div>
     </Router>
