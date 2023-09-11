@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 
 function Login() {
     const [credentials, setCredentials] = useState({
@@ -26,7 +28,9 @@ function Login() {
 
         if (data.token) {
             localStorage.setItem('authToken', data.token)
-            navigate('/products')  
+            console.log(data)
+            // localStorage.setItem('username', data.name.firstName)
+            navigate('/')  
         } else {
             alert('Login failed. Please check your credentials.')
         }
@@ -59,6 +63,7 @@ function Login() {
                 </Form.Group>
 
                 <Button onClick={handleLogin}>Login</Button>
+                <Link to="/register">Don't have an account? Register</Link>
             </Form>
         </div>
     )

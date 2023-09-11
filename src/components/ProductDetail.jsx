@@ -39,7 +39,7 @@ function ProductDetail() {
                     {product.description}
                 </Card.Text>
                 <Button variant="primary">Add to Cart</Button>
-                <Button onClick={()=> navigate('/products') } variant="primary">Back</Button>
+                <Button onClick={()=> navigate('/') } variant="primary">Back</Button>
             </Card.Body>
         </Card>
     )
