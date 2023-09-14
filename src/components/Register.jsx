@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
 import BasicInfo from './BasicInfo'
 import PersonalInfo from './PersonalInfo'
 import { useNavigate } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
+import { useState } from 'react'
 
 function Register() {
     const [step, setStep] = useState(1)
