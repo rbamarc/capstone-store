@@ -1,8 +1,8 @@
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-
+import UserContext from './userContext';
 
 function Login() {
     const [credentials, setCredentials] = useState({
@@ -10,29 +10,60 @@ function Login() {
         password: ''
     })
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    
+    
+    const { user, setUser } = useContext(UserContext)
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setCredentials(prevState => ({ ...prevState, [name]: value }));
-    }
+        const { name, value } = e.target
+        setCredentials(prevState => ({ ...prevState, [name]: value }))
+    };
 
     const handleLogin = async () => {
-        const response = await fetch('http://fakestoreapi.com/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(credentials)
-        })
+        try {
+            
+            const loginResponse = await fetch('http://fakestoreapi.com/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(credentials)
+            })
 
-        const data = await response.json()
+            const loginData = await loginResponse.json()
 
-        if (data.token) {
-            localStorage.setItem('authToken', data.token)
-            console.log(data)
-            // localStorage.setItem('username', data.name.firstName)
-            navigate('/')  
-        } else {
-            alert('Login failed. Please check your credentials.')
+            if (loginData.token) {
+                localStorage.setItem('authToken', loginData.token)
+
+                const usersResponse = await fetch('http://fakestoreapi.com/users')
+                const users = await usersResponse.json()
+
+                const loggedInUser = users.find(u => u.username === credentials.username)
+
+                if (loggedInUser) {
+                    localStorage.setItem('userData', JSON.stringify(loggedInUser))
+                    setUser(loggedInUser)
+
+                    const userId = loggedInUser.id
+                    const cartsResponse = await fetch('http://fakestoreapi.com/carts')
+                    const allCarts = await cartsResponse.json()
+                    const userCart = allCarts.find(cart => cart.userId === userId)
+                    console.log(userCart)
+                    if (userCart) {
+                        localStorage.setItem('userCart', JSON.stringify(userCart))
+                    } else {
+                        localStorage.setItem('userCart', JSON.stringify({ products: [] }))
+                    }
+                
+                    navigate('/')
+                } else {
+                    alert('User details not found. Please try again.')
+                }
+            } else {
+                alert('Login failed. Please check your credentials.')
+            }
+        } catch (error) {
+            console.error("Error during login or fetching user details:", error)
+            alert('An error occurred. Please try again.')
         }
     }
 
@@ -66,7 +97,7 @@ function Login() {
                 <Link to="/register">Don't have an account? Register</Link>
             </Form>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;
