@@ -1,8 +1,9 @@
 import { useCart } from './CartContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
-function Navbar() {
+function Navbar({onSearchChange}) {
     const navigate = useNavigate()
     const token = localStorage.getItem('authToken')
 
@@ -27,11 +28,16 @@ function Navbar() {
             {token ? (
                 <span>
                     Welcome, {username}!
-                    <button onClick={handleLogout}>Logout</button>
+                    <Button onClick={handleLogout} variant='primary'>Logout</Button>
                     <Link to='/cart'>Cart ({itemCount})</Link>
+                    <input
+                        type="text"
+                        placeholder='Search'
+                        onChange={e => onSearchChange(e.target.value)}
+                    />
                 </span>
             ) : (
-                <button onClick={() => navigate('/login')}>Login</button>
+                <Button onClick={() => navigate('/login')} variant='primary'>Login</Button>
             )}
         </div>
     );

@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import Navbar from './Navbar';  // Your Navbar component
-import ProductList from './ProductList'; // Your ProductList component
+import Navbar from './Navbar';
+import ProductList from './ProductList';
 
 function MainLayout() {
     const [searchTerm, setSearchTerm] = useState('');
 
     return (
         <div>
-            <Navbar onSearchChange={setSearchTerm} />
-            <ProductList filter={searchTerm} />
+            <header>
+                <Navbar onSearchChange={setSearchTerm} />
+            </header>
+            <main>
+                <ProductList filter={searchTerm} />
+            </main>
         </div>
     );
 }
