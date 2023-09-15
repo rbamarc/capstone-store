@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from './UserContext';
+
 
 function Login() {
     const [credentials, setCredentials] = useState({
@@ -68,35 +69,43 @@ function Login() {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
-            <Form>
-                <Form.Group controlId='loginUsername'>
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control 
-                        type='text'
-                        placeholder='Enter Username'
-                        name="username"
-                        value={credentials.username}
-                        onChange={handleInputChange}
-                    />
-                </Form.Group>
-                
-                <Form.Group controlId='loginPassword'>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                        type='password'
-                        placeholder='Enter Password'
-                        name="password"
-                        value={credentials.password}
-                        onChange={handleInputChange}
-                    />
-                </Form.Group>
+        <Container className="mt-5">
+            <Row className="justify-content-md-center">
+                <Col xs={12} md={6}>
+                    <h1 className="text-center mb-4">Login</h1>
+                    <Form>
+                        <Form.Group controlId='loginUsername'>
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control 
+                                type='text'
+                                placeholder='Enter Username'
+                                name="username"
+                                value={credentials.username}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
 
-                <Button onClick={handleLogin}>Login</Button>
-                <Link to="/register">Don't have an account? Register</Link>
-            </Form>
-        </div>
+                        <Form.Group controlId='loginPassword'>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control 
+                                type='password'
+                                placeholder='Enter Password'
+                                name="password"
+                                value={credentials.password}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
+
+                        <div className="d-flex justify-content-center">
+                            <Button variant="primary" onClick={handleLogin}>Login</Button>
+                        </div>
+                        <div className="mt-3 text-center">
+                            <Link to="/register">Don't have an account? Register</Link>
+                        </div>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

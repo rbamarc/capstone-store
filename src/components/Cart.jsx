@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { Button, Form, Card, ListGroup } from 'react-bootstrap';
 
 function Cart() {
     const [cart, setCart] = useState({ products: [] });
@@ -44,27 +44,39 @@ function Cart() {
 
     return (
         <div>
-            <h1>Your Cart</h1>
-            <ul>
-                {cart.products.map((product, index) => (
-                    <li key={index}>
-                        <img src={productDetails[index]?.image} alt={productDetails[index]?.title} width="100" />
-                        Product Name: {productDetails[index]?.title},
-                        Quantity: 
-                        <Form.Control 
-                            type="number"
-                            min="1"
-                            value={product.quantity}
-                            onChange={(e) => updateQuantity(product.productId, e.target.value)}
-                        />,
-                        Price: ${productDetails[index]?.price},
-                        Total: ${productDetails[index]?.price * product.quantity}
-                        <Button variant="danger" onClick={() => deleteFromCart(product.productId)}>Remove</Button>
-                    </li>
-                ))}
-            </ul>
-            <Button onClick={()=> navigate('/checkout')} variant='primary'>Checkout</Button>
-            <Button onClick={() => navigate('/')} variant="primary">Back</Button>
+            <h1 className="mb-4">Your Cart</h1>
+
+            {cart.products.map((product, index) => (
+                <Card key={index} className="mb-3">
+                    <Card.Body>
+                        <div className="d-flex">
+                            <img src={productDetails[index]?.image} alt={productDetails[index]?.title} width="100" className="mr-4"/>
+                            <div className="flex-grow-1">
+                                <Card.Title>{productDetails[index]?.title}</Card.Title>
+                                <Card.Text>Price: ${productDetails[index]?.price}</Card.Text>
+                                <Form.Label>Quantity:</Form.Label>
+                                <Form.Control 
+                                    type="number"
+                                    min="1"
+                                    value={product.quantity}
+                                    onChange={(e) => updateQuantity(product.productId, e.target.value)}
+                                    style={{ width: '80px', display: 'inline-block', marginRight: '15px' }}
+                                />
+                                <Button variant="danger" onClick={() => deleteFromCart(product.productId)}>Remove</Button>
+                            </div>
+                            <div className="ml-auto">
+                                <Card.Text>Total: ${productDetails[index]?.price * product.quantity}</Card.Text>
+                            </div>
+                        </div>
+                    </Card.Body>
+                    <hr/>
+                </Card>
+            ))}
+
+            <div className="d-flex justify-content-between mt-4">
+                <Button onClick={() => navigate('/')} variant="primary">Back</Button>
+                <Button onClick={()=> navigate('/checkout')} variant='primary'>Checkout</Button>
+            </div>
         </div>
     );
 }
