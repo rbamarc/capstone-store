@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 
 function ProductCard({ product }) {
   return (
-    <Card className='product-card' style={{ width: '10rem', margin: '1rem' }}>
-      <Card.Img variant="top" src={product.image} style={{ width: '150px', height: '150px', objectFit: 'cover' }}/>
+    <Card className='product-card' style={{ width: '12rem', margin: '2rem', padding: '1rem' }}>
+      <Card.Img 
+        variant="top" 
+        src={product.image} 
+        style={{ width: '150px', height: '150px', objectFit: 'cover', transition: 'transform 0.3s ease-in-out' }} 
+        className="product-image"
+      />
       <Card.Body>
         <Card.Title>{product.title}</Card.Title>
         
@@ -17,7 +22,7 @@ function ProductCard({ product }) {
         
       </Card.Body>
     </Card>
-  );
+);
 }
 
 export default ProductCard;
