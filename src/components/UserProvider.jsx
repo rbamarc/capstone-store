@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import UserContext from './userContext';
+import UserContext from './UserContext';
 
 const UserProvider = (props) => {
     const [user, setUser] = useState(null)
