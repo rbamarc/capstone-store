@@ -40,13 +40,15 @@ function ProductDetail() {
             <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>
-                    ${product.price}
+                     ${product.price}
                 </Card.Text>
                 <Card.Text>
                     {product.description}
                 </Card.Text>
-                <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
-                <Button onClick={() => navigate('/')} variant="primary">Back</Button>
+                <div className="button-container">
+                    <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
+                    <Button onClick={() => navigate('/')} variant="primary">Back</Button>
+                </div>
             </Card.Body>
         </Card>
     )

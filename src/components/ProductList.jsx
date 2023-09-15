@@ -38,10 +38,12 @@ function ProductList() {
     }
 
     return (
-        <div className="main-content">
+    <div className="main-content grid-container">
+        <div></div> {/* Left Spacing */}
+        
+        <div>
             <h1>Product List</h1>
             <Button onClick={() => setShowOffCanvas(true)} variant='primary'>Filter Products</Button>
-
             <FilterOffCanvas 
                 show={showOffCanvas} 
                 onHide={() => setShowOffCanvas(false)} 
@@ -56,12 +58,19 @@ function ProductList() {
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-                displayedProducts.map(product => (
-                    <ProductCard key={product.id} product={product} />
-                ))      
+                <div className="products-grid">
+                    {displayedProducts.map(product => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
             )}
         </div>
-    );
+
+        <div></div> {/* Right Spacing */}
+    </div>
+);
+
+
 }
 
 export default ProductList;
