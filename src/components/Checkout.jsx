@@ -8,7 +8,7 @@ function Checkout() {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <img src={gifURL} alt="Checkout Gif" />
-            <Button variant="primary" onClick={navigate('/')}>Back</Button>
+            <Button variant="primary" onClick={()=>navigate('/')}>Back</Button>
         </div>
     );
 }

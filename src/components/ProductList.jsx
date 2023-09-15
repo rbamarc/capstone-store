@@ -6,7 +6,8 @@ import { Button } from "react-bootstrap";
 function ProductList() {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(''); 
+    const [selectedCategories, setSelectedCategories] = useState([]); 
     const [showOffCanvas, setShowOffCanvas] = useState(false);
 
     useEffect(() => {
@@ -23,8 +24,18 @@ function ProductList() {
         fetchData();
     }, []);
 
-    const filteredProducts = selectedCategory ? 
-        products.filter(product => product.category === selectedCategory) : products;
+    let displayedProducts = products;
+
+    if (searchTerm) {
+        displayedProducts = displayedProducts.filter(product =>
+            product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }
+    if (selectedCategories.length) {
+        displayedProducts = displayedProducts.filter(product => 
+            selectedCategories.includes(product.category)
+        );
+    }
 
     return (
         <div className="main-content">
@@ -34,16 +45,18 @@ function ProductList() {
             <FilterOffCanvas 
                 show={showOffCanvas} 
                 onHide={() => setShowOffCanvas(false)} 
-                onCategorySelect={(category) => {
-                    setSelectedCategory(category);
-                    setShowOffCanvas(false);
+                onCategorySelect={(categories) => {
+                    setSelectedCategories(categories);
                 }} 
+                onSearchApply={(search) => {
+                    setSearchTerm(search);
+                }}
             />
 
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-                filteredProducts.map(product => (
+                displayedProducts.map(product => (
                     <ProductCard key={product.id} product={product} />
                 ))      
             )}

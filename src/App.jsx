@@ -3,7 +3,7 @@ import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail';
 import Register from './components/Register';
 import Login from './components/Login';
-import Navbar from './components/Navbar';
+import CustomNavbar from './components/CustomNavBar';
 import { CartProvider } from './components/CartContext';
 import UserProvider from './components/UserProvider';
 import { useState, useEffect } from 'react';
@@ -11,10 +11,8 @@ import Cart from './components/Cart.jsx';
 import Checkout from './components/Checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function App() {
     const [initialUser, setInitialUser] = useState();
-    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const storedUser = localStorage.getItem('userData');
@@ -27,9 +25,9 @@ function App() {
         <Router>
             <UserProvider>
                 <CartProvider>
-                    <Navbar onSearchChange={setSearchTerm} />
+                    <CustomNavbar />
                     <Routes>
-                        <Route path="/" element={<ProductList filter={searchTerm} />} />
+                        <Route path="/" element={<ProductList />} />
                         <Route path="/products/:id" element={<ProductDetail />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />

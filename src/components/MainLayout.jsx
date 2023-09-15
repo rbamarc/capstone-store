@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Navbar from './Navbar';
+import Navbar from './CustomNavBar';
 import ProductList from './ProductList';
 
 function MainLayout() {
