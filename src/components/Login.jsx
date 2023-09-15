@@ -23,7 +23,7 @@ function Login() {
     const handleLogin = async () => {
         try {
             
-            const loginResponse = await fetch('http://fakestoreapi.com/auth/login', {
+            const loginResponse = await fetch('https://fakestoreapi.com/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(credentials)
@@ -34,7 +34,7 @@ function Login() {
             if (loginData.token) {
                 localStorage.setItem('authToken', loginData.token)
 
-                const usersResponse = await fetch('http://fakestoreapi.com/users')
+                const usersResponse = await fetch('https://fakestoreapi.com/users')
                 const users = await usersResponse.json()
 
                 const loggedInUser = users.find(u => u.username === credentials.username)
@@ -44,7 +44,7 @@ function Login() {
                     setUser(loggedInUser)
 
                     const userId = loggedInUser.id
-                    const cartsResponse = await fetch('http://fakestoreapi.com/carts')
+                    const cartsResponse = await fetch('https://fakestoreapi.com/carts')
                     const allCarts = await cartsResponse.json()
                     const userCart = allCarts.find(cart => cart.userId === userId)
                     console.log(userCart)
