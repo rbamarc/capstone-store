@@ -39,7 +39,7 @@ function ProductList() {
 
     return (
     <div className="main-content grid-container">
-        <div></div> {/* Left Spacing */}
+        <div></div> 
         
         <div>
             <h1>Product List</h1>
@@ -66,7 +66,7 @@ function ProductList() {
             )}
         </div>
 
-        <div></div> {/* Right Spacing */}
+        <div></div> 
     </div>
 );
 

@@ -43,7 +43,7 @@ function Register() {
             return;  
         }
         try {
-            const response = await fetch(`http://fakestoreapi.com/users`, {
+            const response = await fetch(`https://fakestoreapi.com/users`, {
                 method: "POST",
                 headers: { 
                     'Content-Type': 'application/json'

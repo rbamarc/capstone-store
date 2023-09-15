@@ -29,8 +29,7 @@ function ProductDetail() {
     if(!product) return <p>Loading</p>
 
     const handleAddToCart = () => {
-        addProductToCart(product, 1);  // Currently hardcoded to add a quantity of 1
-        // Provide feedback to user (optional)
+        addProductToCart(product, 1);
         alert(`${product.title} added to cart!`);
     }
     
