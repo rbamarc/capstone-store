@@ -17,7 +17,7 @@ function Cart() {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const responses = await Promise.all(cart.products.map(p => fetch(`http://fakestoreapi.com/products/${p.productId}`)));
+                const responses = await Promise.all(cart.products.map(p => fetch(`https://fakestoreapi.com/products/${p.productId}`)));
                 const productsData = await Promise.all(responses.map(res => res.json()));
                 setProductDetails(productsData);
             } catch (error) {
