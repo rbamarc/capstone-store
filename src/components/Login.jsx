@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import UserContext from './userContext';
+import UserContext from './UserContext';
 
 function Login() {
     const [credentials, setCredentials] = useState({
