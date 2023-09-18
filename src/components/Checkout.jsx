@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 function Checkout() {
     const navigate = useNavigate()
@@ -7,8 +7,12 @@ function Checkout() {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <img src={gifURL} alt="Checkout Gif" />
-            <Button variant="primary" onClick={()=>navigate('/')}>Back</Button>
+            <Card style={{ width: '18rem', textAlign: 'center', padding: '20px' }}>
+                <Card.Img variant="top" src={gifURL} alt="Checkout Gif" style={{ marginBottom: '15px' }} />
+                <Card.Body>
+                    <Button variant="primary" onClick={()=>navigate('/')}>Back</Button>
+                </Card.Body>
+            </Card>
         </div>
     );
 }

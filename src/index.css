@@ -37,5 +37,24 @@
 }
 
 .bg-body-tertiary{
-  background-color: #2e2e2e !important;
+  background-color: #4a4a4a !important;
+}
+
+.footer-card {
+  background-color: #4a4a4a;
+  color: white;
+  padding: 1rem 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-card a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-card a:hover {
+  text-decoration: underline;
 }

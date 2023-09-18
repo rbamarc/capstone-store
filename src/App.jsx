@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import Cart from './components/Cart.jsx';
 import Checkout from './components/Checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from './components/Footer';
 
 function App() {
     const [initialUser, setInitialUser] = useState();
@@ -34,6 +35,7 @@ function App() {
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/checkout" element={<Checkout />} />
                     </Routes>
+                    <Footer/>
                 </CartProvider>
             </UserProvider>
         </Router>

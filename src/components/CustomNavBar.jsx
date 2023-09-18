@@ -24,7 +24,7 @@ function CustomNavbar() {
     return (
         <Navbar className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="/">Capston Store</Navbar.Brand>
+                <Navbar.Brand href="/" className='text-white'>Capston Store</Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
 
@@ -32,9 +32,9 @@ function CustomNavbar() {
                     {token ? (
                         <>
                             <Navbar.Text className="me-3">
-                                Welcome, <Link to="/profile">{username}</Link>
+                                Welcome, <Link to="/profile" className='text-white'>{username}</Link>
                             </Navbar.Text>
-                            <Link className="nav-link me-3" to="/cart">Cart ({itemCount})</Link>
+                            <Link className="nav-link text-white me-3" to="/cart">Cart ({itemCount})</Link>
                             <Button onClick={handleLogout} variant="outline-danger">Logout</Button>
                         </>
                     ) : (
